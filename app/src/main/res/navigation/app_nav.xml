@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_nav"
+    app:startDestination="@id/classement2">
+    <fragment
+        android:id="@+id/detailAlbum6"
+        android:name="com.ysifre.android_project.vue.DetailAlbum">
+        <action
+            android:id="@+id/action_detailAlbum6_to_detailArtiste42"
+            app:destination="@id/detailArtiste4" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailArtiste4"
+        android:name="com.ysifre.android_project.vue.DetailArtiste">
+        <action
+            android:id="@+id/action_detailArtiste4_to_detailAlbum6"
+            app:destination="@id/detailAlbum6" />
+        <action
+            android:id="@+id/action_detailArtiste4_to_classement2"
+            app:destination="@id/classement2" />
+    </fragment>
+    <fragment
+        android:id="@+id/tabs"
+        android:name="com.ysifre.android_project.vue.Tabs"
+        android:label="Tabs" >
+        <action
+            android:id="@+id/action_tabs_to_classement2"
+            app:destination="@id/classement2" />
+    </fragment>
+    <fragment
+        android:id="@+id/classement2"
+        android:name="com.ysifre.android_project.vue.Classement"
+        android:label="Classement" >
+        <action
+            android:id="@+id/action_classement2_to_detailArtiste4"
+            app:destination="@id/detailArtiste4">
+        </action>
+    </fragment>
+</navigation>

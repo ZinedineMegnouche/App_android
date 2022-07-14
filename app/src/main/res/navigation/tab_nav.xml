@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tab_nav"
+    app:startDestination="@id/classement">
+
+    <fragment
+        android:id="@+id/classement"
+        android:name="com.ysifre.android_project.vue.Classement"
+        android:label="Classement" />
+    <fragment
+        android:id="@+id/favoris"
+        android:name="com.ysifre.android_project.vue.Favoris"
+        android:label="Favoris" />
+    <fragment
+        android:id="@+id/recherche"
+        android:name="com.ysifre.android_project.vue.Recherche"
+        android:label="Recherche" />
+</navigation>
