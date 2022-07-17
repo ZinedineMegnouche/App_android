@@ -13,10 +13,5 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        GlobalScope.launch(Dispatchers.Default) {
-            val response = GetAlbumIdNetwork.findAlbumById(112024)
-            Log.d("ESGI", response.toString())
-        }
     }
 }

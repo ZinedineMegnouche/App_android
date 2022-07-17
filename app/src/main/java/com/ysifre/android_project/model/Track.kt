@@ -40,6 +40,11 @@ interface GetPopularTracksAPI{
     fun findPopular(@Query("s")name: String) : Call<Tracks>
 }
 
+interface GetTracksByAlbumIdAPI{
+    @GET("track.php")
+    fun findTracks(@Query("m")id: Int) : Call<Tracks>
+}
+
 object GetTrendingTracksNetwork{
     private val api = Retrofit.Builder()
         .baseUrl("https://theaudiodb.com/api/v1/json/523532/")
@@ -63,5 +68,18 @@ object GetPopularTracksNetwork{
 
     suspend fun findPopularTracks(name: String): Tracks {
         return api.findPopular(name).await()
+    }
+}
+
+object GetTrackByAlbumIdNetwork{
+    private val api = Retrofit.Builder()
+        .baseUrl("https://theaudiodb.com/api/v1/json/523532/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .addCallAdapterFactory(CoroutineCallAdapterFactory())
+        .build()
+        .create(GetTracksByAlbumIdAPI::class.java)
+
+    suspend fun findPopularTracks(albumId: Int): Tracks {
+        return api.findTracks(albumId).await()
     }
 }

@@ -17,7 +17,7 @@
                 android:background="@drawable/lay">
 
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/shapeableImageView"
+                    android:id="@+id/albumCoverImage"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:foreground="@drawable/rawz"
@@ -30,35 +30,38 @@
                     app:shapeAppearanceOverlay="@style/roundImageView"></com.google.android.material.imageview.ShapeableImageView>
 
                 <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="100dp"
-                    android:layout_height="30dp"
+                    android:id="@+id/albumNameText"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginEnd="244dp"
                     android:text=".RAW-Z"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.299"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/albumCoverImage"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.695"></TextView>
+                    app:layout_constraintVertical_bias="0.616"></TextView>
 
                 <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="30dp"
+                    android:id="@+id/nbTracksAlbumText"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
                     android:text="10 chansons"
-                    android:textColor="#D1D1D1"
+                    android:textColor="#FFFFFF"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.299"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView4"
-                    app:layout_constraintVertical_bias="0.652"></TextView>
+                    app:layout_constraintHorizontal_bias="0.084"
+                    app:layout_constraintStart_toEndOf="@+id/albumCoverImage"
+                    app:layout_constraintTop_toTopOf="@+id/albumNameText"
+                    app:layout_constraintVertical_bias="0.402"></TextView>
 
                 <ImageView
-                    android:id="@+id/buttonBack"
+                    android:id="@+id/buttonBackAlbum"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -72,9 +75,11 @@
                 </ImageView>
 
                 <TextView
-                    android:layout_width="76dp"
-                    android:layout_height="30dp"
+                    android:id="@+id/artistNameAlbumText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="Laylow"
+                    android:textAlignment="textStart"
                     android:textColor="@color/white"
                     android:textSize="20dp"
                     android:textStyle="bold"
@@ -85,28 +90,21 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.132"></TextView>
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
+                <TextView
+                    android:id="@+id/releaseDateAlbum"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="280dp"
+                    android:text="2018"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.958"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/albumCoverImage"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.132"
-                    app:srcCompat="@drawable/likeoff"></ImageView>
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="25dp"
-                    android:layout_height="21dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.961"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.181"
-                    app:srcCompat="@drawable/likeon"></ImageView>
+                    app:layout_constraintVertical_bias="0.87" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -118,11 +116,14 @@
                 android:background="@drawable/background_border_relativelayout"
                 android:backgroundTint="#E6E5E5">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:backgroundTint="#FFFFFF"
-                    android:layout_width="40dp"
-                    android:layout_height="20dp"
+                <LinearLayout
+                    android:id="@+id/linearLayout2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:background="#FFFFFF"
+                    android:backgroundTint="#FFFFFF"
+                    android:gravity="center"
+                    android:orientation="horizontal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.102"
@@ -132,6 +133,7 @@
                     <ImageView
                         android:layout_width="15dp"
                         android:layout_height="15dp"
+                        android:layout_marginRight="5dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
@@ -154,28 +156,31 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"></TextView>
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
 
                 <TextView
-                    android:id="@+id/vote"
+                    android:id="@+id/nbVotes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1000 votes"
+                    android:layout_marginStart="16dp"
+                    android:text="100"
                     android:textColor="@color/black"
-                    android:textSize="15dp"
+                    android:textSize="14sp"
                     android:textStyle="normal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.261"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"></TextView>
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/linearLayout2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.523"></TextView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/descAlbumTextView"
                 android:layout_width="match_parent"
-                android:layout_height="104dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
                 android:text=".RAW-Z est le quatrième EP solo de l'artiste toulousain Laylow sorti le 7 décembre 2018, que l'artiste décrit comme une extension à l'EP .RAW paru le 19 juin de la même année."
                 android:textSize="16sp" />
 
@@ -184,176 +189,16 @@
                 android:layout_width="128dp"
                 android:layout_height="30dp"
                 android:text="Titres"
+                android:layout_marginBottom="20dp"
                 android:textColor="#000000"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
-            <ScrollView
-                android:id="@+id/scrollView3"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tracksAlbumRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.964">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginBottom="10dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="1"
-                            android:textColor="#000000"
-                            android:textSize="15dp"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.042"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"></TextView>
-
-                        <TextView
-                            android:id="@+id/title1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Hello .RAW-Z"
-                            android:textColor="@color/black"
-                            android:textSize="15dp"
-                            android:textStyle="normal"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.165"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"></TextView>
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginBottom="10dp">
-
-                        <TextView
-                            android:id="@+id/nb2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="2"
-                            android:textColor="#000000"
-                            android:textSize="15dp"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.042"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"></TextView>
-
-                        <TextView
-                            android:id="@+id/title2"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Hello .RAW-Z"
-                            android:textColor="@color/black"
-                            android:textSize="15dp"
-                            android:textStyle="normal"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.165"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"></TextView>
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginBottom="10dp">
-
-                        <TextView
-                            android:id="@+id/nb3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="3"
-                            android:textColor="#000000"
-                            android:textSize="15dp"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.042"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"></TextView>
-
-                        <TextView
-                            android:id="@+id/title3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Hello .RAW-Z"
-                            android:textColor="@color/black"
-                            android:textSize="15dp"
-                            android:textStyle="normal"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.165"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"></TextView>
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
-                        android:layout_marginBottom="10dp">
-
-                        <TextView
-                            android:id="@+id/nb4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="4"
-                            android:textColor="#000000"
-                            android:textSize="15dp"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.042"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"></TextView>
-
-                        <TextView
-                            android:id="@+id/title4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Hello .RAW-Z"
-                            android:textColor="@color/black"
-                            android:textSize="15dp"
-                            android:textStyle="normal"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.165"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"></TextView>
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-                </LinearLayout>
-            </ScrollView>
         </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

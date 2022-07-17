@@ -26,10 +26,12 @@
         app:itemIconTint="@android:color/holo_red_dark"
         app:itemTextColor="@android:color/holo_red_dark"
         app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_nav_menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.997"
         tools:ignore="NotSibling" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

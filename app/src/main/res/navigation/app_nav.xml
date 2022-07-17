@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_nav"
     app:startDestination="@id/classement2">
     <fragment
@@ -37,5 +36,22 @@
             android:id="@+id/action_classement2_to_detailArtiste4"
             app:destination="@id/detailArtiste4">
         </action>
+        <action
+            android:id="@+id/action_classement2_to_recherche2"
+            app:destination="@id/recherche2" />
+    </fragment>
+    <fragment
+        android:id="@+id/recherche2"
+        android:name="com.ysifre.android_project.vue.Recherche"
+        android:label="Recherche" >
+        <action
+            android:id="@+id/action_recherche2_to_detailAlbum6"
+            app:destination="@id/detailAlbum6" />
+        <action
+            android:id="@+id/action_recherche2_to_classement2"
+            app:destination="@id/classement2" />
+        <action
+            android:id="@+id/action_recherche2_to_detailArtiste4"
+            app:destination="@id/detailArtiste4" />
     </fragment>
 </navigation>

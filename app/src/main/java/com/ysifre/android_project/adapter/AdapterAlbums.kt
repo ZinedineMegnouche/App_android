@@ -1,17 +1,14 @@
 package com.ysifre.android_project.adapter
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.ysifre.android_project.R
-import kotlin.coroutines.coroutineContext
 
 
-class AdaptaterPopularTracks(private val mList: List<ItemsPopularTrackModel>) : RecyclerView.Adapter<AdaptaterPopularTracks.ViewHolder>() {
+class AdapterAlbums(private val mList: List<ItemAlbumViewModel>) : RecyclerView.Adapter<AdapterAlbums.ViewHolder>() {
 
     private lateinit var onItemClickListener: OnItemClickListener
 
@@ -20,7 +17,7 @@ class AdaptaterPopularTracks(private val mList: List<ItemsPopularTrackModel>) : 
         // inflates the card_view_design view
         // that is used to hold list item
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.card_view_popular_tracks, parent, false)
+            .inflate(R.layout.card_view_album, parent, false)
 
         return ViewHolder(view)
     }
@@ -29,13 +26,15 @@ class AdaptaterPopularTracks(private val mList: List<ItemsPopularTrackModel>) : 
         this.onItemClickListener = onItemClickListener
     }
 
-    private fun getItem(position: Int): ItemsPopularTrackModel {
+    private fun getItem(position: Int): ItemAlbumViewModel {
         return mList[position]
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val itemsViewModel = mList[position]
-        holder.trackName.text = itemsViewModel.trackName
+        holder.image.setImageResource(itemsViewModel.image)
+        holder.albumName.text = itemsViewModel.albumName
+        holder.albumDate.text = itemsViewModel.albumDate
 
         holder.itemView.setOnClickListener(View.OnClickListener {
             onItemClickListener.onItemClick(
@@ -46,7 +45,9 @@ class AdaptaterPopularTracks(private val mList: List<ItemsPopularTrackModel>) : 
 
     // Holds the views for adding it to image and text
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
-        val trackName: TextView = itemView.findViewById(R.id.trackNameCardViewPopular)
+        var image: ImageView = itemView.findViewById(R.id.imageAlbumCardView)
+        val albumName: TextView = itemView.findViewById(R.id.albumNameCardViewAlbum)
+        val albumDate: TextView = itemView.findViewById(R.id.albumDateCardViewAlbum)
     }
 
     interface OnItemClickListener{
