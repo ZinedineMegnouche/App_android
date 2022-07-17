@@ -1,12 +1,16 @@
 package com.ysifre.android_project.vue
 
+import android.graphics.drawable.Drawable
+import android.os.Build
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
@@ -14,6 +18,10 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.target.SimpleTarget
+import com.bumptech.glide.request.transition.Transition
 import com.ysifre.android_project.GetAlbumByIdNetwork
 import com.ysifre.android_project.GetAlbumsFromArtistAndAblbumNamesNetwork
 import com.ysifre.android_project.R
@@ -24,7 +32,10 @@ import com.ysifre.android_project.model.Track
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.properties.Delegates
+
 
 class DetailAlbum : Fragment() {
     lateinit var backButton: ImageView
@@ -41,6 +52,7 @@ class DetailAlbum : Fragment() {
     lateinit var artistId: String
     lateinit var artistName: String
     lateinit var albumName: String
+    lateinit var layoutImage: ConstraintLayout
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,6 +60,7 @@ class DetailAlbum : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.album, container, false).apply {
+            layoutImage = findViewById(R.id.relativeLayout2)
             backButton = findViewById(R.id.buttonBackAlbum)
             albumCover = findViewById(R.id.albumCoverImage)
             artistNameTextView = findViewById(R.id.artistNameAlbumText)
@@ -57,6 +70,7 @@ class DetailAlbum : Fragment() {
             note = findViewById(R.id.note)
             nbVotes = findViewById(R.id.nbVotes)
             descAlbum = findViewById(R.id.descAlbumTextView)
+            descAlbum.movementMethod = ScrollingMovementMethod()
             tracksRecyclerView = findViewById(R.id.tracksAlbumRecyclerView)
 
             tracksRecyclerView.layoutManager = LinearLayoutManager(activity)
@@ -99,7 +113,6 @@ class DetailAlbum : Fragment() {
                     DetailAlbumDirections.actionDetailAlbum6ToDetailArtiste42()
                 )
             }
-
         }
     }
 
@@ -116,8 +129,29 @@ class DetailAlbum : Fragment() {
                         releaseDate.text = response.album.get(0).intYearReleased
                         note.text = response.album.get(0).intScore
                         nbVotes.text = response.album.get(0).intScoreVotes + " votes"
-                        descAlbum.text = response.album.get(0).strDescriptionEN
-                        Log.d("ALBUM ID -----", response.album.get(0).idAlbum.toString())
+
+                        if(response.album.get(0).strDescriptionFR != null && Locale.getDefault().displayLanguage.equals("français")){
+                            descAlbum.text = response.album.get(0).strDescriptionFR
+                        } else if(response.album.get(0).strDescriptionES != null && Locale.getDefault().displayLanguage.equals("español")){
+                            descAlbum.text = response.album.get(0).strDescriptionES
+                        } else{
+                            descAlbum.text = response.album.get(0).strDescriptionEN
+                        }
+
+                        Glide.with(this@DetailAlbum).load(response.album.get(0).strAlbumThumb).centerCrop().placeholder(R.drawable.ic_placeholder_artiste).into(albumCover)
+
+                        Glide.with(this@DetailAlbum).load(response.album.get(0).strAlbumThumb).centerCrop().placeholder(R.drawable.dark_placeholder).into(object : CustomTarget<Drawable?>() {
+                            override fun onResourceReady(
+                                resource: Drawable,
+                                transition: Transition<in Drawable?>?
+                            ) {
+                                layoutImage.background = resource
+                            }
+
+                            override fun onLoadCleared(placeholder: Drawable?) {
+                            }
+                        })
+
                         displayRecyclerView(response.album.get(0).idAlbum.toInt())
                     }
                 }
@@ -141,6 +175,19 @@ class DetailAlbum : Fragment() {
                         note.text = response.album.get(0).intScore
                         nbVotes.text = response.album.get(0).intScoreVotes + " votes"
                         descAlbum.text = response.album.get(0).strDescriptionEN
+                        Glide.with(this@DetailAlbum).load(response.album.get(0).strAlbumThumb).centerCrop().placeholder(R.drawable.ic_placeholder_album).into(albumCover)
+
+                        Glide.with(this@DetailAlbum).load(response.album.get(0).strAlbumThumb).centerCrop().placeholder(R.drawable.dark_placeholder).into(object : CustomTarget<Drawable?>() {
+                            override fun onResourceReady(
+                                resource: Drawable,
+                                transition: Transition<in Drawable?>?
+                            ) {
+                                layoutImage.background = resource
+                            }
+
+                            override fun onLoadCleared(placeholder: Drawable?) {
+                            }
+                        })
                     }
                 }
             } catch(e: Exception) {
@@ -161,8 +208,10 @@ class DetailAlbum : Fragment() {
                         tracks.add(i)
                     }
                 }
+                var count = 1
                 for (i in tracks) {
-                    data.add(ItemsPopularTrackModel(i.strTrack))
+                    data.add(ItemsPopularTrackModel(count.toString(), i.strTrack))
+                    count += 1
                 }
                 nbTracks.text = tracks.size.toString() + " chansons"
                 val adapter = AdapterPopularTracks(data)

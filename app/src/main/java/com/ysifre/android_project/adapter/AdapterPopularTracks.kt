@@ -12,10 +12,7 @@ class AdapterPopularTracks(private val mList: List<ItemsPopularTrackModel>) : Re
 
     private lateinit var onItemClickListener: OnItemClickListener
 
-    // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        // inflates the card_view_design view
-        // that is used to hold list item
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.card_view_popular_tracks, parent, false)
 
@@ -33,6 +30,7 @@ class AdapterPopularTracks(private val mList: List<ItemsPopularTrackModel>) : Re
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val itemsViewModel = mList[position]
         holder.trackName.text = itemsViewModel.trackName
+        holder.ranking.text = itemsViewModel.ranking
 
         holder.itemView.setOnClickListener(View.OnClickListener {
             onItemClickListener.onItemClick(
@@ -41,9 +39,9 @@ class AdapterPopularTracks(private val mList: List<ItemsPopularTrackModel>) : Re
         })
     }
 
-    // Holds the views for adding it to image and text
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val trackName: TextView = itemView.findViewById(R.id.trackNameCardViewPopular)
+        val ranking: TextView = itemView.findViewById(R.id.rankingTextView)
     }
 
     interface OnItemClickListener{

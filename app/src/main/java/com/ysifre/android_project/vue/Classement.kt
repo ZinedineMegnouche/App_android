@@ -41,6 +41,7 @@ class Classement : Fragment(){
     lateinit var tracksButton: Button
     lateinit var albumsButton: Button
     lateinit var searchButton: ImageView
+    lateinit var favButton: ImageView
     lateinit var viewTracks: View
     lateinit var viewAlbums: View
 
@@ -51,12 +52,12 @@ class Classement : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.classement, container, false).apply {
-            Log.d("SYSTEM LANGUAGE", Locale.getDefault().displayLanguage)
-
+            Log.d("LANGUE", Locale.getDefault().displayLanguage.toString())
             trendingRecyclerView = findViewById(R.id.trendingRecyclerView)
             tracksButton = findViewById(R.id.titleButton)
             albumsButton = findViewById(R.id.albumButton)
             searchButton = findViewById(R.id.search_button)
+            favButton = findViewById(R.id.favButton)
             viewTracks = findViewById(R.id.view1)
             viewAlbums = findViewById(R.id.view2)
 
@@ -88,6 +89,12 @@ class Classement : Fragment(){
                 )
             }
 
+            favButton.setOnClickListener {
+                findNavController().navigate(
+                    ClassementDirections.actionClassement2ToFavoris2()
+                )
+            }
+
         }
     }
 
@@ -107,17 +114,12 @@ class Classement : Fragment(){
 
                 for (i in tracks) {
                     if(i.strTrackThumb != null){
-                        val imageUri = Uri.parse(i.strTrackThumb)
-                        Log.d("IMAGE BITMAP", imageUri.toString())
-                        //val source: ImageDecoder.Source = ImageDecoder.createSource(requireActivity().contentResolver, imageUri)
-                        //val bitmap: Bitmap = ImageDecoder.decodeBitmap(source)
-                        data.add(ItemsTrackViewModel(imageUri, i.strTrack, i.strArtist, i.intChartPlace))
-                    }/*else{
-                        val icon = BitmapFactory.decodeResource(requireContext().resources, R.drawable.ic_placeholder_album)
-                        data.add(ItemsTrackViewModel(icon, i.strTrack, i.strArtist, i.intChartPlace))
-                    }*/
-
+                        data.add(ItemsTrackViewModel(i.strTrackThumb, i.strTrack, i.strArtist, i.intChartPlace))
+                    }else{
+                        data.add(ItemsTrackViewModel("", i.strTrack, i.strArtist, i.intChartPlace))
+                    }
                 }
+
                 val adapter = CustomAdapter(data)
                 trendingRecyclerView.adapter = adapter
                 adapter.setOnItemClickListener(object:CustomAdapter.OnItemClickListener{
@@ -156,17 +158,13 @@ class Classement : Fragment(){
                 }
                 for (i in albums) {
                     if(i.strAlbumThumb != null){
-                        val imageUri = Uri.parse(i.strAlbumThumb)
-                        Log.d("IMAGE URI", imageUri.toString())
-                        val source: ImageDecoder.Source = ImageDecoder.createSource(requireActivity().contentResolver, imageUri)
-                        //val bitmap: Bitmap = ImageDecoder.decodeBitmap(source)
-                        data.add(ItemsTrackViewModel(imageUri, i.strAlbum, i.strArtist, i.intChartPlace))
-                    }/*else{
-                        val icon = BitmapFactory.decodeResource(requireContext().resources, R.drawable.ic_placeholder_album)
-                        data.add(ItemsTrackViewModel(icon, i.strAlbum, i.strArtist, i.intChartPlace))
-                    }*/
+                        data.add(ItemsTrackViewModel(i.strAlbumThumb, i.strAlbum, i.strArtist, i.intChartPlace))
+                    }else{
+                        data.add(ItemsTrackViewModel("", i.strAlbum, i.strArtist, i.intChartPlace))
+                    }
                 }
                 val adapter = CustomAdapter(data)
+                Log.d("IMAGE URI", "TEST 1")
                 trendingRecyclerView.adapter = adapter
                 adapter.setOnItemClickListener(object:CustomAdapter.OnItemClickListener{
                     override fun onItemClick(position: Int) {

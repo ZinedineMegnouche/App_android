@@ -141,6 +141,7 @@
                     tools:srcCompat="@drawable/recherche"></ImageView>
 
                 <ImageView
+                    android:id="@+id/favButton"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     app:srcCompat="@drawable/favoris"

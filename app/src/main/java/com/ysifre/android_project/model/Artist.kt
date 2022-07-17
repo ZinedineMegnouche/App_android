@@ -17,6 +17,8 @@ data class Artist (
     val strArtist: String,
     val strGenre: String,
     val strBiographyEN: String,
+    val strDescriptionFR: String,
+    val strDescriptionES: String,
     val strCountry: String,
     val strArtistThumb: String
 )

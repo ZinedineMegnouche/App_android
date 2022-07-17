@@ -10,21 +10,22 @@
         <entry key="app/src/main/res/drawable-anydpi/raw_z.xml" value="0.1045" />
         <entry key="app/src/main/res/drawable/albumicon.xml" value="0.1875" />
         <entry key="app/src/main/res/drawable/background_border_relativelayout.xml" value="0.329" />
+        <entry key="app/src/main/res/drawable/ic_accueil_favoris.xml" value="0.192" />
         <entry key="app/src/main/res/drawable/ic_placeholder_album.xml" value="0.157" />
         <entry key="app/src/main/res/drawable/ic_placeholder_artiste.xml" value="0.1825" />
         <entry key="app/src/main/res/drawable/radius.xml" value="0.329" />
         <entry key="app/src/main/res/drawable/shape.xml" value="0.193" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/album.xml" value="0.1462760791443941" />
-        <entry key="app/src/main/res/layout/artiste.xml" value="0.24365997314453128" />
+        <entry key="app/src/main/res/layout/album.xml" value="0.18741530033580034" />
+        <entry key="app/src/main/res/layout/artiste.xml" value="0.25" />
         <entry key="app/src/main/res/layout/card_view_album.xml" value="0.286495063589291" />
         <entry key="app/src/main/res/layout/card_view_artist.xml" value="0.1470713980333476" />
-        <entry key="app/src/main/res/layout/card_view_popular_tracks.xml" value="0.16047144152311876" />
-        <entry key="app/src/main/res/layout/card_view_track.xml" value="0.38804092476396057" />
+        <entry key="app/src/main/res/layout/card_view_popular_tracks.xml" value="0.4374856016793689" />
+        <entry key="app/src/main/res/layout/card_view_track.xml" value="0.2562814070351759" />
         <entry key="app/src/main/res/layout/classement.xml" value="0.20127868652343758" />
         <entry key="app/src/main/res/layout/detailalbum.xml" value="0.1" />
         <entry key="app/src/main/res/layout/favoris.xml" value="0.1486854034451496" />
-        <entry key="app/src/main/res/layout/recherche.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/recherche.xml" value="0.18884124755859377" />
         <entry key="app/src/main/res/layout/tab_nav.xml" value="0.1486854034451496" />
         <entry key="app/src/main/res/layout/tabs.xml" value="0.42582397460937504" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.19581017528858485" />

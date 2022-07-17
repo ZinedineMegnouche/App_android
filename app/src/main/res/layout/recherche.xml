@@ -30,10 +30,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintHorizontal_bias="0.047"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.574"></TextView>
+        app:layout_constraintVertical_bias="0.471"></TextView>
 
     <TextView
         android:id="@+id/textViewArtist"
@@ -48,7 +48,7 @@
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.207"></TextView>
+        app:layout_constraintVertical_bias="0.214"></TextView>
 
     <SearchView
         android:id="@+id/researchView"
@@ -66,13 +66,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/searchAlbumRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="230dp"
+        android:layout_height="300dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.877" />
+        app:layout_constraintVertical_bias="0.859" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
@@ -114,6 +114,7 @@
                     tools:srcCompat="@drawable/ic_accueil_recherche"></ImageView>
 
                 <ImageView
+                    android:id="@+id/favButton"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     app:srcCompat="@drawable/favoris"
@@ -152,13 +153,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewArtist"
         android:layout_width="match_parent"
-        android:layout_height="230dp"
+        android:layout_height="150dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.379" />
+        app:layout_constraintVertical_bias="0.318" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,5 @@
 package com.ysifre.android_project.adapter
 
-data class ItemsPopularTrackModel(val trackName: String) {
+data class ItemsPopularTrackModel(val ranking: String, val trackName: String) {
     
 }

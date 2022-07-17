@@ -1,9 +1,9 @@
 package com.ysifre.android_project.vue
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -20,12 +20,15 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.SimpleTarget
+import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.ysifre.android_project.Album
 import com.ysifre.android_project.GetAlbumIdNetwork
 import com.ysifre.android_project.R
-import com.ysifre.android_project.adapter.*
+import com.ysifre.android_project.adapter.AdapterAlbums
+import com.ysifre.android_project.adapter.AdapterPopularTracks
+import com.ysifre.android_project.adapter.ItemAlbumViewModel
+import com.ysifre.android_project.adapter.ItemsPopularTrackModel
 import com.ysifre.android_project.model.GetArtistByIdNetwork
 import com.ysifre.android_project.model.GetPopularTracksNetwork
 import com.ysifre.android_project.model.Track
@@ -59,6 +62,7 @@ class DetailArtiste : Fragment() {
             recyclerViewTrack = findViewById(R.id.tracksRecyclerViewDetailArtist)
             artistImage = findViewById(R.id.constraintImage)
             artistDesc = findViewById(R.id.artistDescription)
+            artistDesc.movementMethod = ScrollingMovementMethod()
             artistName = findViewById(R.id.artistName)
             artistCountry = findViewById(R.id.countryArtistTextView)
             artistGenre = findViewById(R.id.artistGenre)
@@ -142,11 +146,21 @@ class DetailArtiste : Fragment() {
                 Log.d("TRACK POPULAR RESPONSE", response.toString())
                 if (response != null) {
                     if (response.artists != null) {
-                        artistName.text = response.artists.get(0).strArtist
-                        artistCountry.text = response.artists.get(0).strCountry
-                        artistDesc.text = response.artists.get(0).strBiographyEN
-                        artistGenre.text = response.artists.get(0).strGenre
-                        val imageUri = Uri.parse(response.artists.get(0).strArtistThumb)
+                        artistName.text = response.artists[0].strArtist
+                        artistCountry.text = response.artists[0].strCountry
+                        artistDesc.text = response.artists[0].strBiographyEN
+                        artistGenre.text = response.artists[0].strGenre
+                        Glide.with(this@DetailArtiste).load(response.artists.get(0).strArtistThumb).centerCrop().placeholder(R.drawable.dark_placeholder).into(object : CustomTarget<Drawable?>() {
+                            override fun onResourceReady(
+                                resource: Drawable,
+                                transition: Transition<in Drawable?>?
+                            ) {
+                                artistImage.background = resource
+                            }
+
+                            override fun onLoadCleared(placeholder: Drawable?) {
+                            }
+                        })
                     }
                 }
             } catch(e: Exception) {
@@ -168,7 +182,12 @@ class DetailArtiste : Fragment() {
                     }
                 }
                 for (i in albums) {
-                    data.add(ItemAlbumViewModel(R.drawable.ic_placeholder_album, i.strAlbum, i.intYearReleased))
+                    if(i.strAlbumThumb != null){
+                        data.add(ItemAlbumViewModel(i.strAlbumThumb, i.strAlbum, i.intYearReleased))
+                    }else{
+                        data.add(ItemAlbumViewModel("", i.strAlbum, i.intYearReleased))
+                    }
+
                 }
                 nbAlbum.text = "(" + albums.size.toString() + ")"
                 val adapter = AdapterAlbums(data)
@@ -201,8 +220,10 @@ class DetailArtiste : Fragment() {
                         tracks.add(i)
                     }
                 }
+                var count = 1
                 for (i in tracks) {
-                    data.add(ItemsPopularTrackModel(i.strTrack))
+                    data.add(ItemsPopularTrackModel(count.toString(), i.strTrack))
+                    count += 1
                 }
                 val adapter = AdapterPopularTracks(data)
                 recyclerViewTrack.adapter = adapter

@@ -37,6 +37,7 @@ class Recherche : Fragment() {
     lateinit var recyclerViewAlbum: RecyclerView
     lateinit var recyclerViewArtist: RecyclerView
     lateinit var homeButton: ImageView
+    lateinit var favButton: ImageView
     lateinit var artistTextView: TextView
     lateinit var albumTextView: TextView
 
@@ -50,12 +51,14 @@ class Recherche : Fragment() {
             recyclerViewAlbum = findViewById(R.id.searchAlbumRecyclerView)
             recyclerViewArtist = findViewById(R.id.recyclerViewArtist)
             homeButton = findViewById(R.id.homeButton)
+            favButton = findViewById(R.id.favButton)
             artistTextView = findViewById(R.id.textViewArtist)
             albumTextView = findViewById(R.id.textViewAlbum)
 
             recyclerViewAlbum.layoutManager = LinearLayoutManager(activity)
             recyclerViewArtist.layoutManager = LinearLayoutManager(activity)
             homeButton.setOnClickListener { findNavController().navigate(RechercheDirections.actionRecherche2ToClassement2())}
+            favButton.setOnClickListener { findNavController().navigate(RechercheDirections.actionRecherche2ToFavoris2())}
             artistTextView.isVisible = false
             albumTextView.isVisible = false
             searchViewArtists()
@@ -80,7 +83,12 @@ class Recherche : Fragment() {
                             }
                         }
                         for (i in albums) {
-                            data.add(ItemAlbumViewModel(R.drawable.ic_placeholder_artiste, i.strAlbum, i.intYearReleased))
+                            if(i.strAlbumThumb != null){
+                                data.add(ItemAlbumViewModel(i.strAlbumThumb, i.strAlbum, i.intYearReleased))
+                            }else{
+                                data.add(ItemAlbumViewModel("", i.strAlbum, i.intYearReleased))
+                            }
+
                         }
                         val adapter = AdapterAlbums(data)
                         recyclerViewAlbum.adapter = adapter
@@ -127,7 +135,12 @@ class Recherche : Fragment() {
                             }
                         }
                         for (i in artists) {
-                            data.add(ItemAlbumViewModel(R.drawable.ic_placeholder_album, i.strArtist, ""))
+                            if(i.strArtistThumb != null){
+                                data.add(ItemAlbumViewModel(i.strArtistThumb, i.strArtist, ""))
+                            }else{
+                                data.add(ItemAlbumViewModel("", i.strArtist, ""))
+                            }
+
                         }
                         val adapter = AdapterAlbums(data)
                         recyclerViewArtist.adapter = adapter

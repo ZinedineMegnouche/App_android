@@ -18,6 +18,8 @@ data class Albums(
 data class Album (
     val idAlbum: String,
     val strDescriptionEN: String,
+    val strDescriptionFR: String,
+    val strDescriptionES: String,
     val strAlbum: String,
     val strAlbumStripped: String,
     val strArtist: String,
@@ -46,7 +48,7 @@ interface GetTrendingAlbumsAPI{
 }
 
 interface GetDiscographyAPI{
-    @GET("discography.php")
+    @GET("searchalbum.php")
     fun findDiscography(@Query("s")name: String) : Call<Albums>
 }
 
